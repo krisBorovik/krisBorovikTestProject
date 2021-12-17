@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Title</title>
+</h:head>
+
+<h:body>
+    <center><h2><h:outputText value="Order Records"/></h2></center>
+    <h:form id="orderForm">
+        <h:dataTable id="schoolTable" binding="#{table}" value="#{ApplicationBean.getAllOrders()}" var="order" styleClass="table table-striped table-bordered tableUpdated">
+            <h:column>
+                <f:facet name="header">Id                 </f:facet>
+                <h:outputText value="#{order.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order cofee type</f:facet>
+                <h:outputText value="#{order.coffeeType}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order number</f:facet>
+                <h:outputText value="#{order.number}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order delivery type</f:facet>
+                <h:outputText value="#{order.deliveryType}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order date</f:facet>
+                <h:outputText value="#{order.date}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action ="#{ApplicationBean.deleteOrder()}" value="Delete">
+                    <f:param name = "id" value = "#{order.id}" />
+                </h:commandButton>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:commandButton action ="orderEdit" value="Edit">
+                    <f:param name = "id" value = "#{order.id}" />
+                </h:commandButton>
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+    <h:form>
+        <h2>Coffe shop </h2>
+        <h4>menu</h4>
+        <table>
+            <tr>
+                <td> <p><h:commandButton value="Edit" action="orderView" /></p></td>
+                <td> <p><h:commandButton value="Add" action="addOrder" /></p></td>
+                <td> <h:outputText value="#{ApplicationBean.number}" /></td>
+            </tr>
+
+        </table>
+        <p><h:messages /></p>
+    </h:form>
+
+</h:body>
+
+</html>

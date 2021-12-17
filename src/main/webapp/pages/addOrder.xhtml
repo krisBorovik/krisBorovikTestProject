@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Coffee Shop</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h2>Coffee shop</h2>
+        <h4>Order Edit </h4>
+        <table>
+            <tr>
+                <td>Coffee Type:</td>
+                <td>
+                    <h:selectOneMenu label="Coffee Type"
+                                     value="#{orderBean.coffeeType}">
+                        <f:selectItem itemLabel="Arabika" itemValue="arabica" />
+                        <f:selectItem itemLabel="Robusta" itemValue="robusta" />
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td>Delivery:</td>
+                <td>
+                    <h:selectOneRadio label="Delivery Type"
+                                      id="dtype" value="#{orderBean.deliveryType}"
+                                      required="true">
+                        <f:selectItem itemLable="ByCourier" itemValue="byCourier" />
+                        <f:selectItem itemLable="PickUp" itemValue="pickUp" />
+                    </h:selectOneRadio>
+                    <h:message for="dtype" />
+                </td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td>
+                    <h:inputText label="Number"
+                                 id="num" value="#{orderBean.number}" required="true">
+                        <f:convertNumber  />
+                        <f:validateLongRange minimum="100" maximum="1000" />
+                    </h:inputText>
+                    <f:attribute name="number" value="#{orderBean.number}"/>
+                    <h:message for="num" />
+                </td>
+            </tr>
+            <tr>
+                <td>Delivery time:</td>
+                <td>
+                    <h:inputText label="Delivery time"
+                                 id="date" value="#{orderBean.date}"
+                                 required="true" validator="timeValidator">
+                    </h:inputText>
+                    <h:message for="date" />
+                </td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+            </tr>
+        </table>
+        <p><h:messages /></p>
+        <p><h:commandButton value="Order" action="menu" /></p>
+        <p><h:commandButton value="OrderWithChek" actionListener ="#{orderBean.addValidOrder}" action="addOrder"/></p>
+
+
+    </h:form>
+</h:body>
+</html>
